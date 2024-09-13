@@ -169,7 +169,7 @@ export class PlayerCharacter {
       pieceHeight * destinationScale
     );
 
-    if (this.game.lifeKeeper.remainingLives < MAX_PLAYER_LIVES){
+    if (this.game.lifeKeeper.remainingLives < MAX_PLAYER_LIVES) {
       let [x, y] = this.computeCurrentCoordinates();
       const fireSize = 3 + 1.2 * (MAX_PLAYER_LIVES - this.game.lifeKeeper.remainingLives)
       drawFireEffect(ctx, x + this.hitboxWidth / 2, y + this.hitboxHeight / 2, fireSize, 100, this.fireArray);

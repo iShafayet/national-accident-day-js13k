@@ -1,7 +1,6 @@
 import { InputState } from "../InputState";
 import { CANVAS_BASE_HEIGHT, CANVAS_BASE_WIDTH } from "../constants";
 import { CleanupService } from "./CleanupService";
-import { ControlTips } from "./ControlTips";
 import { Enemy } from "./Enemy";
 import { EnemyFactory } from "./EnemyFactory";
 import { EnemyType } from "./EnemyType";
@@ -31,7 +30,6 @@ export class Game {
   menuWithCredits: MenuWithCredits;
   gameOverNotice: GameOverNotice;
   level: Level;
-  controlTips: ControlTips;
 
   time: number;
   gameResetSubscriberFn: Function;
@@ -50,7 +48,6 @@ export class Game {
     this.lifeKeeper = new LifeKeeper(this);
     this.menuWithCredits = new MenuWithCredits(this);
     this.gameOverNotice = new GameOverNotice(this);
-    this.controlTips = new ControlTips(this);
     this.level = new Level(this);
 
     this.enemyList = [];
@@ -115,8 +112,6 @@ export class Game {
 
     this.scoreKeeper.draw(ctx);
     this.lifeKeeper.draw(ctx);
-
-    this.controlTips.draw(ctx);
 
     this.fpsCounter.draw(ctx);
   }
