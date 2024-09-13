@@ -18,13 +18,13 @@ function debounceKey(key: string, value: boolean, debounceDuration: number): boo
   }
 }
 
-export function combineInputStates(inputState: InputState, keyboardInputState: KeyboardInputState, gamepadInputState: GamepadInputState) {
-  inputState.up = keyboardInputState.up || gamepadInputState.gamepadUp;
-  inputState.down = keyboardInputState.down || gamepadInputState.gamepadDown;
-  inputState.left = keyboardInputState.left || gamepadInputState.gamepadLeft;
-  inputState.right = keyboardInputState.right || gamepadInputState.gamepadRight;
-  inputState.space = keyboardInputState.space || gamepadInputState.gamepadA;
-  inputState.f = keyboardInputState.f || gamepadInputState.gamepadB;
+export function combineInputStates(inputState: InputState, keyboardInputState: KeyboardInputState, gamepadInputState: GamepadInputState, touchInputState: KeyboardInputState) {
+  inputState.up = keyboardInputState.up || gamepadInputState.gamepadUp || touchInputState.up;
+  inputState.down = keyboardInputState.down || gamepadInputState.gamepadDown || touchInputState.down;
+  inputState.left = keyboardInputState.left || gamepadInputState.gamepadLeft || touchInputState.left;
+  inputState.right = keyboardInputState.right || gamepadInputState.gamepadRight || touchInputState.right;
+  inputState.space = keyboardInputState.space || gamepadInputState.gamepadA || touchInputState.space;
+  inputState.f = keyboardInputState.f || gamepadInputState.gamepadB || touchInputState.f;
 
   inputState.space = debounceKey("SPACE", inputState.space, 300);
   inputState.f = debounceKey("F", inputState.f, 300);

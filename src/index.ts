@@ -5,6 +5,7 @@ import { KeyboardInputState } from "./input/KeyboardInputState";
 import { combineInputStates } from "./input/combineInput";
 import { collectGamepadButtonPresses } from "./input/gamepad";
 import { setupKeyboardEventDetection } from "./input/keyboard";
+import { setupTouchEventDetection } from "./input/touchInput";
 
 import { Game } from "./objects/Game";
 
@@ -38,6 +39,17 @@ const keyboardInputState: KeyboardInputState = {
   f: false,
 };
 
+
+const touchInputState: KeyboardInputState = {
+  left: false,
+  right: false,
+  up: false,
+  down: false,
+  space: false,
+  f: false,
+};
+
+
 const gamepadInputState: GamepadInputState = {
   gamepadUp: false,
   gamepadDown: false,
@@ -48,6 +60,8 @@ const gamepadInputState: GamepadInputState = {
 };
 
 setupKeyboardEventDetection(keyboardInputState);
+
+setupTouchEventDetection(touchInputState);
 
 let game: Game;
 
@@ -66,7 +80,7 @@ createNewGame();
 function tick(t: number) {
   collectGamepadButtonPresses(gamepadInputState);
 
-  combineInputStates(inputState, keyboardInputState, gamepadInputState);
+  combineInputStates(inputState, keyboardInputState, gamepadInputState, touchInputState);
 
   game.updateState(inputState);
   game.draw(ctx);
@@ -74,3 +88,5 @@ function tick(t: number) {
 }
 
 requestAnimationFrame(tick);
+
+
